@@ -1,8 +1,18 @@
 # Filecopy Plugin for IntelliJ-based IDEs  
 *Effortlessly Copy File Contents to Clipboard*
 
-## What is Filecopy?  
-Filecopy is a powerful yet simple plugin for IntelliJ-based IDEs that allows you to quickly copy the contents of selected files to your clipboard directly from the project view context menu. Whether you're working with individual files or entire directories, Filecopy recursively copies file contents, saving you time and effort during development.
+## What is Filecopy?
+The **Filecopy Plugin** allows users to copy the contents of files (including files within directories) to the clipboard directly from the context menu in IntelliJ-based IDEs. This functionality is useful for quickly sharing file content as task context, reference material, or for analysis. Whether you're working with individual files or entire directories, Filecopy recursively copies file contents, saving you time and effort during development.
+
+### How It Works:
+- **Copy Content to Clipboard**: Right-click on a file or directory within the project view and select the option to copy the file contents to the clipboard.
+- **Recursive File Processing**: The plugin automatically processes all files within selected directories, including subdirectories, and copies their content.
+- **Context Menu Access**: The action is easily accessible from the project view’s context menu, making it seamless to copy file content without leaving the IDE.
+
+### Common Use Cases:
+- **Task Context**: Use the plugin to copy and share the contents of configuration files, code snippets, or any project-related files as context for AI-powered tasks or automation.
+- **File Content Sharing**: Efficiently provide file contents for code reviews, issue tracking, or collaboration by pasting them directly from the clipboard.
+- **Documentation & Troubleshooting**: Quickly copy and paste contents from logs, settings, or code files when describing problems or providing details in support forums or AI-driven tools.
 
 ## Key Features:
 - **Copy File Contents**: Instantly copy the contents of one or more files to your clipboard.
