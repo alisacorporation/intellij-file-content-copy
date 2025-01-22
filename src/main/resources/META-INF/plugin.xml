@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<idea-plugin>
+    <version>1.0.0</version>
+    <idea-version since-build="231" until-build="241.*"/>
+    <change-notes><![CDATA[
+    Initial release: Copy file contents to clipboard
+    ]]>
+    </change-notes>
+    <id>com.alisacorporation.filecopy</id>
+    <name>Filecopy</name>
+    <vendor email="alisa.corporation@protonmail.com" url="https://xeon.lv">Alisa Corporation</vendor>
+
+    <description><![CDATA[
+    Copy file content to clipboard directly from project view context menu.
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+    </extensions>
+
+    <actions>
+        <action id="CopyFileContent"
+                class="com.alisacorporation.filecopy.CopyFileContentAction"
+                text="Copy Content to Clipboard"
+                description="Copy file content to clipboard">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+        </action>
+    </actions>
+</idea-plugin>
