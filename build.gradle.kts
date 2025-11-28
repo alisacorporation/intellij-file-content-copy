@@ -1,6 +1,6 @@
 plugins {
     id("java")
-    id("org.jetbrains.kotlin.jvm") version "1.9.25"
+    id("org.jetbrains.kotlin.jvm") version "2.1.0"
     id("org.jetbrains.intellij") version "1.17.4"
 }
 
@@ -14,12 +14,17 @@ repositories {
 // Configure Gradle IntelliJ Plugin
 // Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
 intellij {
-    version.set("2024.1.7")
+    version.set("2025.2.5")
     type.set("IC") // Target IDE Platform
     plugins.set(listOf(/* Plugin Dependencies */))
 }
 
 tasks {
+    // Disable building searchable options since we don't have any
+    withType<org.jetbrains.intellij.tasks.BuildSearchableOptionsTask> {
+        enabled = false
+    }
+    
     // Set the JVM compatibility versions
     withType<JavaCompile> {
         sourceCompatibility = JavaVersion.VERSION_17.toString()
@@ -32,8 +37,8 @@ tasks {
 
     patchPluginXml {
         version.set(project.version.toString())
-        sinceBuild.set("241") // Minimum IDE version
-        //untilBuild.set("241.*") // Maximum IDE version
+        sinceBuild.set("252") // Minimum IDE version
+        //untilBuild.set("252.*") // Maximum IDE version
         changeNotes.set("""
             <ul>
                 <li>Initial release: Copy file contents to clipboard from project view context menu</li>
