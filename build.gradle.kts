@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.alisacorporation"
-version = "1.1.1"
+version = "1.1.2"
 
 repositories {
     mavenCentral()
@@ -33,7 +33,8 @@ intellijPlatform {
         }
         changeNotes = """
             <ul>
-                <li>Initial release: Copy file contents to clipboard from project view context menu</li>
+                <li>Fixed compatibility with IntelliJ IDEA 2024.3+</li>
+                <li>Added proper ActionUpdateThread handling</li>
             </ul>
         """.trimIndent()
         description = """

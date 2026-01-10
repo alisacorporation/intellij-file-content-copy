@@ -3,12 +3,15 @@ package com.alisacorporation.filecopy
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
+import com.intellij.openapi.actionSystem.ActionUpdateThread
 import com.intellij.openapi.ide.CopyPasteManager
 
 import com.intellij.openapi.vfs.VirtualFile
 import java.awt.datatransfer.StringSelection
 
 class CopyFileContentAction : AnAction() {
+
+    override fun getActionUpdateThread(): ActionUpdateThread = ActionUpdateThread.BGT
 
     override fun actionPerformed(e: AnActionEvent) {
         e.project ?: return
