@@ -29,7 +29,7 @@ intellijPlatform {
         version = project.version.toString()
         ideaVersion {
             sinceBuild = "243"
-            untilBuild = "999.*"
+            untilBuild = "253.*"
         }
         changeNotes = """
             <ul>
