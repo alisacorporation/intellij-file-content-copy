@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <idea-plugin>
     <version>1.0.0</version>
-    <idea-version since-build="231" until-build="241.*"/>
+    <idea-version since-build="211" until-build="*"/>
     <change-notes><![CDATA[
     Initial release: Copy file contents to clipboard
     ]]>

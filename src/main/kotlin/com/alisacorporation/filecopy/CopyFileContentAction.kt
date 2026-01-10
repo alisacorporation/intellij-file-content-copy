@@ -4,17 +4,14 @@ import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
 import com.intellij.openapi.ide.CopyPasteManager
-import com.intellij.openapi.actionSystem.ActionUpdateThread
+
 import com.intellij.openapi.vfs.VirtualFile
 import java.awt.datatransfer.StringSelection
 
 class CopyFileContentAction : AnAction() {
-    override fun getActionUpdateThread(): ActionUpdateThread {
-        return ActionUpdateThread.BGT
-    }
 
     override fun actionPerformed(e: AnActionEvent) {
-        val project = e.project ?: return
+        e.project ?: return
         val virtualFiles = e.getData(CommonDataKeys.VIRTUAL_FILE_ARRAY) ?: return
 
         val content = buildString {
@@ -39,9 +36,7 @@ class CopyFileContentAction : AnAction() {
     }
 
     override fun update(e: AnActionEvent) {
-        if (getActionUpdateThread() == ActionUpdateThread.BGT) {
-            val files = e.getData(CommonDataKeys.VIRTUAL_FILE_ARRAY)
-            e.presentation.isEnabledAndVisible = !files.isNullOrEmpty()
-        }
+        val files = e.getData(CommonDataKeys.VIRTUAL_FILE_ARRAY)
+        e.presentation.isEnabledAndVisible = !files.isNullOrEmpty()
     }
 }
