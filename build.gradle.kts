@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     id("java")
     id("org.jetbrains.kotlin.jvm") version "2.1.0"
@@ -5,7 +7,7 @@ plugins {
 }
 
 group = "com.alisacorporation"
-version = "1.1.2"
+version = "1.1.3"
 
 repositories {
     mavenCentral()
@@ -15,8 +17,9 @@ repositories {
 }
 
 dependencies {
+    // Use 2024.1 (build 241) as the base version for better compatibility
     intellijPlatform {
-        intellijIdeaCommunity("2024.3")
+        intellijIdeaCommunity("2024.1")
     }
 }
 
@@ -27,18 +30,32 @@ intellijPlatform {
 
     pluginConfiguration {
         version = project.version.toString()
+
         ideaVersion {
-            sinceBuild = "243"
-            untilBuild = "253.*"
+            // Support from 2024.1 onwards - no upper limit
+            // Build 241 = IntelliJ IDEA 2024.1
+            // By not specifying untilBuild, the plugin will work with all future IDE versions
+            sinceBuild = "241"
+            // untilBuild is intentionally omitted for forward compatibility
         }
+
         changeNotes = """
             <ul>
-                <li>Fixed compatibility with IntelliJ IDEA 2024.3+</li>
-                <li>Added proper ActionUpdateThread handling</li>
+                <li>v1.1.3: Improved compatibility with IntelliJ IDEA 2024.1 - 2025.3</li>
+                <li>v1.1.2: Fixed compatibility with IntelliJ IDEA 2024.3+</li>
+                <li>v1.1.2: Added proper ActionUpdateThread handling</li>
             </ul>
         """.trimIndent()
+
         description = """
-            Copy file content to clipboard directly from project view context menu. Maybe useful, to share with Claude AI, ChatGPT etc..
+            Copy file content to clipboard directly from project view context menu. 
+            Useful for sharing code context with Claude AI, ChatGPT, and other AI assistants.
+            
+            Features:
+            - Copy single file contents
+            - Copy multiple files at once
+            - Recursively copy directory contents
+            - Simple right-click context menu integration
         """.trimIndent()
     }
 
@@ -54,13 +71,21 @@ intellijPlatform {
 }
 
 tasks {
-    // Set the JVM compatibility versions
+    // Use Java 17 for better compatibility with older IDEs
+    // Java 17 is supported by IDEA 2024.1+
     withType<JavaCompile> {
-        sourceCompatibility = JavaVersion.VERSION_21.toString()
-        targetCompatibility = JavaVersion.VERSION_21.toString()
+        sourceCompatibility = JavaVersion.VERSION_17.toString()
+        targetCompatibility = JavaVersion.VERSION_17.toString()
         options.encoding = "UTF-8"
     }
+
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        kotlinOptions.jvmTarget = "21"
+        compilerOptions.jvmTarget.set(JvmTarget.JVM_17)
+    }
+
+    patchPluginXml {
+        // This ensures plugin.xml values are overridden by Gradle configuration
+        sinceBuild.set("241")
+        // untilBuild is intentionally not set - plugin will work with all future versions
     }
 }
